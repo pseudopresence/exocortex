@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <title>textarea test</title>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+    var log_id = 0
+    $(document).ready(function() {
+      $("#foo").keydown(function(event) {
+        if (event.which === 13 /*DOM_VK_RETURN*/) {
+          var t = $("#foo");
+          var txt = t.val();
+          t.before("<p style='border: 1px solid #ccc; padding: 1px; margin: 1px;'>" + "[" + log_id + "]" + " " + txt + ", hmm yase." + "</p>");
+          t.val("");
+          log_id += 1;
+          event.preventDefault();
+        }
+        if (event.which === 9 /*DOM_VK_TAB*/) {
+          // TODO prepend text in same paragraph
+          var t = $("#foo");
+          var txt = t.val();
+          t.before(txt + " | "); // todo escape!
+          t.val("");
+          event.preventDefault();
+        }
+      });
+    });
+    </script>
+  </head>
+  <body>
+    <div id="log">
+      <textarea id="foo" style="height: 1em; width: *%"></textarea>
+    </div>
+  </body>
+</html>

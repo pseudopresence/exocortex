@@ -1,0 +1,24 @@
+!!! 5
+%html
+  %head{lang: "en-GB"}
+    %title Now with CoffeeScript, Haml and Sass
+    %link{rel: "stylesheet", type:"text/css", href: "test.css"}
+    %script{src:"http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"}
+    %script{src: "client.js"}
+  %body
+    %h1 Hello, World! :-)
+    %p
+      ~*Welcome to my homepage*~
+    %p
+      Cool links:
+      %ul
+        %li
+          %a{href: "http://google.com", onclick: "return leave()"}
+            El Goog
+        %li
+          %a{href: "http://twitter.com", onclick: "return leave()"}
+            Web 2.0
+    .bar
+      Click me
+    .foo
+      This is a test

@@ -4,14 +4,25 @@
     <title>textarea test</title>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript">
-    var log_id = 0
+        var log_id = 0;
+        var cur_line = "";
+        /*
+           TODO - we want the tabbed text to appear on the same line as the final command,
+           and we'll want to use the contents eventually. So we want to place the typed text
+           into some kind of model which then gets rendered into html on-demand.
+         */
+    var make_para = function(txt) {
+        return "<p style='border: 1px solid #ccc; padding: 1px; margin: 1px;'>"+txt+"</p>";
+    }
     $(document).ready(function() {
-      $("#foo").keydown(function(event) {
+      $("#log").append(make_para("<textarea id='foo' style='height: 1em; width: *%'></textarea>"));      $("#foo").keydown(function(event) {
         if (event.which === 13 /*DOM_VK_RETURN*/) {
           var t = $("#foo");
           var txt = t.val();
-          t.before("<p style='border: 1px solid #ccc; padding: 1px; margin: 1px;'>" + "[" + log_id + "]" + " " + txt + ", hmm yase." + "</p>");
+          txt = cur_line + txt;
+          t.before( make_para("[" + log_id + "]" + " " + txt + ", hmm yase.") );
           t.val("");
+          cur_line = "";
           log_id += 1;
           event.preventDefault();
         }
@@ -20,6 +31,7 @@
           var t = $("#foo");
           var txt = t.val();
           t.before(txt + " | "); // todo escape!
+          cur_line = cur_line + txt + " | ";
           t.val("");
           event.preventDefault();
         }
@@ -29,7 +41,6 @@
   </head>
   <body>
     <div id="log">
-      <textarea id="foo" style="height: 1em; width: *%"></textarea>
     </div>
   </body>
 </html>

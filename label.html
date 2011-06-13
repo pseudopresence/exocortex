@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<title>Enter text</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script type="text/javascript">
+ $(document).ready(function() {
+   $("#name").focus()
+   $("#name").keypress(function(e) {
+     if (e.which === 13)
+     {
+       var t = $("#name").val()
+       document.title = t
+       $("#name").replaceWith("<h1>" + t + "</h1>")
+     }
+   });
+ });
+</script>
+<style>
+html, body {
+  display:table;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+}
+body div {
+  display:table-cell;
+  vertical-align: middle;
+  text-align: center;
+  width:100%;
+  height:100%;
+}
+h1 {
+  text-align: center;
+  font-size: 100px;
+  font-family: Helvetica,Arial,sans-serif;
+}
+</style>
+</head>
+<body>
+<div>
+<input type="text" id="name">
+</div>
+</body>
+</html>
